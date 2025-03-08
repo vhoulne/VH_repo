@@ -1,0 +1,84 @@
+/* style2.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7e6; /* Vert clair pour un fond écolo */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Style pour le bandeau supérieur */
+header {
+    background-image: url('go-green-hero-mobile-v2.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #2f4f4f; /* Vert foncé */
+    font-size: 1.5em;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #228B22; /* Vert forêt */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+iframe {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Styling for search form */
+#searchForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#searchInput {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 1em;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    border: 1px solid #228B22; /* Vert forêt */
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    background-color: #228B22; /* Vert forêt */
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #006400; /* Vert foncé */
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche en local avec Python</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    
+    <p><a href="index.html">Accéder à la page d'acceuil</a></p>
+    <iframe src="http://localhost:8050/" width="100%" height="600px" frameBorder="0"></iframe> 
+    <!-- ou http://0.0.0.0:8050/  et http://localhost:8050/ si localement. -->
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le formulaire de recharger la page
+            var query = document.getElementById('searchInput').value;
+            executePythonFunction(query);
+        });
+
+        function executePythonFunction(query) {
+            // Envoie une requête HTTP POST à localhost:8000 avec le contenu de la recherche
+            fetch('http://localhost:8000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            }).then(response => {
+                console.log('Requête envoyée avec succès.');
+            }).catch(error => {
+                console.error('Erreur lors de l\'envoi de la requête:', error);
+            });
+        }
+    </script>
+</body>
+</html>

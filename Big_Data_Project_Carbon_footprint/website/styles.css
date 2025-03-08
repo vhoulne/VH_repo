@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Style for header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    transition: height 0.5s, background 0.5s, font-size 0.5s;
+    z-index: 1000;
+}
+
+
+
+
+header.small {
+    height: 70px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Style for header overlay */
+#header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0); /* Fully opaque white background */
+    z-index: 1; /* Ensure it stays above the video */
+}
+
+/* Style the header title */
+header h1 {
+    font-size: 15vw; /* Increase font size */
+    text-transform: uppercase; /* Make text uppercase */
+    color: rgba(#2e8b57); /* Transparent text */
+    -webkit-text-stroke: 2px white; /* White stroke for visibility */
+    background: white;
+    background-clip: text;
+    -webkit-background-clip: text;
+    mix-blend-mode: destination-out; /* Cut out the text from the overlay */
+    transition: font-size 0.5s, -webkit-text-stroke-width 0.5s;
+}
+
+header.small h1 {
+    font-size: 1.5em;
+    -webkit-text-stroke-width: 1px;
+}
+
+/* Style for header video */
+header video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transition: height 0.5s;
+}
+
+header.small video {
+    height: 70px;
+}
+
+/* Style for main content */
+#main-content {
+    padding: 20px;
+    margin-top: 100vh; /* Hauteur du header en plein écran */
+    background: #f9f9f9;
+    transition: margin-top 0.5s;
+}
+
+header.small + #main-content {
+    margin-top: 200px; /* Hauteur du header réduit */
+}
+
+/* Style for sections */
+section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+footer {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2e8b57;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+/* Style for navigation */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007BFF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background: #007BFF;
+    color: white;
+}
+
+/* Style for introduction */
+#intro {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+#intro-text-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#intro-text {
+    font-size: 15em;
+    z-index: 2;
+}
+
+/* Style for CO2 emissions */
+#co2-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#co2-emissions {
+    font-size: 3em;
+    text-align: center;
+    color: #2e8b57;
+    transition: transform 0.8s ease-in-out; /* Slower and smoother transformation */
+    will-change: transform; /* Optimize the rendering performance */
+    white-space: nowrap; /* Prevent line break */
+}
+
+#co2-value {
+    display: inline-block;
+}
+
+#co2-unit {
+    display: inline-block;
+    font-size: 0.5em; /* Adjust the size of the unit */
+    vertical-align: middle; /* Align with the middle of the number */
+}
+
+/* Style for footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2e8b57;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-radius: 8px;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #1c5d38;
+}
+
+
+
+/* Styles for tabs */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background-color 0.3s;
+    border-radius: 8px 8px 0 0;
+    margin-right: 2px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Styles for the search section */
+#search-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: none;
+    background: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#search-button:hover {
+    background: #218838;
+}
+
+#chart-container {
+    margin-top: 20px;
+}
+
+.image-container3 {
+    text-align: center;
+}
+.image-container3 img {
+    margin-top: 30px;
+}
+
+.key-stats2 p {
+    font-size: 20px; /* Taille de police plus grande */
+    color: #006400; /* Couleur vert foncé */
+}
+
+.key-stats2 h3 {
+    font-size: 30px; /* Taille de police plus grande */
+    color: #023a02; /* Couleur vert foncé */
+    margin-bottom: 5px ;
+}
+
+.image-container_principale {
+    text-align: center;
+}
+.image-container_principale img {
+    margin-top: 30px;
+    margin-bottom : 30px;
+}

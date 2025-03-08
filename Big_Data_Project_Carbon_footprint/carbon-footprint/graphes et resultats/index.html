@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche en local avec Python</title>
+</head>
+<body>
+    <h1>Bienvenue sur la page d'accueil</h1>
+    <p><a href="page2.html">Accéder à la deuxième page</a></p>
+    
+    <h2>Barre de recherche</h2>
+    <form id="searchForm">
+        <input type="text" id="searchInput" name="query" placeholder="Entrez votre recherche...">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le formulaire de recharger la page
+            var query = document.getElementById('searchInput').value;
+            executePythonFunction(query);
+        });
+
+        function executePythonFunction(query) {
+            // Envoie une requête HTTP POST à localhost:8000 avec le contenu de la recherche
+            fetch('http://localhost:8000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            }).then(response => {
+                console.log('Requête envoyée avec succès.');
+            }).catch(error => {
+                console.error('Erreur lors de l\'envoi de la requête:', error);
+            });
+        }
+    </script>
+</body>
+</html>

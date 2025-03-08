@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empreinte Carbone des Conférences en Informatique</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+    </script>
+</head>
+<body>
+    <header id="main-header">
+        <video autoplay muted loop id="background-video">
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="header-overlay">
+            <h1 id="header-title">Carbon Footprint</h1>
+        </div>
+    </header>
+    <input type="text" id="query" placeholder="Enter your query">
+    <button onclick="sendQuery()">Send Query</button>
+    <p id="response"></p>
+    <div id="main-content">
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#methodologie">Méthodologie</a></li>
+                <li><a href="#resultats">Résultats</a></li>
+                <li><a href="#carte">Carte</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#search-section">Rechercher une conférence</a></li>
+            </ul>
+        </nav>
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Bienvenue sur le site du PROJ104 "Evaluate Carbon Footprint of Computer Science" ! Notre objectif avec ce site est de vous présenter brièvement nos résultats et nos recherches sur l'empreinte carbone des conférences en informatique. Tout part d'un constat et d'une question : Contrairement à d'autres domaines de recherche, les chercheurs en informatique voyagent systématiquement à travers le monde pour assurer la visibilité de leurs papiers lors des conférences. Mais quel est l'impact environnemental de cette pratique ?</p>
+        </section>
+
+        <section id="methodologie">
+            <h2>Méthodologie</h2>
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'OBJ')">Nos objectifs</button>
+                <button class="tablinks" onclick="openTab(event, 'DBLP')">DBLP, la base de données</button>
+                <button class="tablinks" onclick="openTab(event, 'ORCID')">ORCID, la base de données</button>
+                <button class="tablinks" onclick="openTab(event, 'CONC')">Nos concessions</button>
+                <button class="tablinks" onclick="openTab(event, 'APPROX')">Les approximations faites</button>
+            </div>
+        
+            <div id="OBJ" class="tabcontent">
+                <h3>Nos objectifs</h3>
+                <p>L’objectif de notre projet était d’approcher la borne inférieure de l’empreinte carbone des cycles de conférences en informatique. Pour cela nous voulions utiliser la base de données DBLP permettant d’obtenir les lieux des conférences, les papiers présentés à chacune, les auteurs de ceux-ci ainsi que leurs affiliations. </p>
+            </div>
+        
+            <div id="DBLP" class="tabcontent">
+                <h3>DBLP</h3>
+                <p>Nous avons récupéré toutes les données fournies sur DBLP sur les conférences, les articles ainsi que leurs auteurs. Cependant seulement nous avions seulement une affiliation pour un chercheur sur 25 en moyenne. De même nous n’avons pas réussi à obtenir une localisation utilisable pour 14 % des conférences.</p>
+                <p>Nous arrivions bien à identifier pour chaque conférence tous les chercheurs présents.</p>
+            </div>
+            <div id="ORCID" class="tabcontent">
+                <h3>ORCID</h3>
+                <p>Afin de récupérer beaucoup plus d’adresses pour les chercheurs en informatique nous avons décidé d’utiliser la base de données d’ORCID. Celle-ci nous a permis d’obtenir le profil de 18,5 millions de chercheurs en plus (dans tous les domaines).</p>
+                <p>Après une jointure difficile avec la base de données de DBLP, nous avons récupéré 700 000 affiliations supplémentaires (en considérant les doublons et avec plusieurs approximations, on pourrait avancer qu’au maximum 1/9 de celles-ci sont inexactes).</p>
+            </div>
+            <div id="CONC" class="tabcontent">
+                <h3>Nos concessions</h3>
+                <p>-    Pour trouver les coordonnées GPS de nombreuses localisations (entre 0 et 60% de celles-ci), nous nous sommes contentés de prendre celle du pays (souvent par manque d’information).</p>
+                <p>-    Nous n’avons pas cherché à trouver plus d’adresses autres que celles de DBLP et ORCID, ainsi nous ne nous sommes pas intéressés aux clusters de chercheurs (groupe professeur/doctorants).</p>
+                <p>-    Nous n’avons pas pu nous intéresser aux différentes méthodes pour calculer les empreintes carbones des conférences.</p>
+            </div>  
+            <div id="APPROX" class="tabcontent">
+                <h3>Les approximations faites</h3>
+                <p>-	Pour un article où nous n’avons qu’une partie des auteurs qui ont une affiliation, nous nous intéressons qu’à ceux-ci.</p>
+                <p>-	Pour un article d’une conférence donnée, qui n’a aucun auteur avec une affiliation, nous considérons que l’empreinte carbone de celui-ci est égale à la moyenne de l’empreinte carbone des autres articles de cette conférence.</p>
+                <p>-	Nous faisons de même pour les conférences n’ayant pas de localisation.</p>
+                <p>-	Pour une conférence donnée, on considère qu’uniquement un chercheur se déplace pour présenter son article (d’où l’estimation de la borne inférieure).  </p>
+                <p>-	Notre calcul de l’empreinte carbone d’un trajet est effectué grâce à de nombreuses simplifications arbitraires (cf. image ci-dessous).</p>
+                <div class="image-container3">
+                    <img src="screen_fonction.png" alt="paramètres pour calculer l'emprunte carbone" width="500" height="300">
+                </div>
+            </div>
+        </section>
+        
+        <section id="resultats">
+            <h2>Résultats</h2>
+            <p>Nos résultats montrent que les conférences en informatique génèrent une empreinte carbone significative, principalement due aux déplacements internationaux des participants. Voici le total des émissions de CO2 générées :</p>
+            <div id="co2-container">
+                <div id="co2-emissions">
+                    <span id="co2-value">5.6 Millions</span> <span id="co2-unit"> de tonnes de CO2 équivalent</span>
+                    <p><span id="co2-unit"> Soit 1.6 tCO2eq par article</span></p>
+                </div>
+            </div>
+            <div class="key-stats2">
+            <h3>Nos chiffres clefs</h3>
+                <p>- 57 000 conférences</p>
+                <p>- 3,4 millions d’articles</p>
+                <p>- 3,5 millions de chercheurs (on a parcouru le profil de 19 millions de chercheurs)</p>
+            </div>
+        </section>
+
+        <section id="methodologie">
+            <h2>Graphiques</h2>
+            <div class="image-container_principale">
+                <img src="nv_empreinte_carbone_annuelle.png" alt="évolution de l'emprunte carbone par année" width="1000" height="600">
+            </div>
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'CONF_P')">Carte des conférences</button>
+                <button class="tablinks" onclick="openTab(event, 'AUT_P')">Carte des affiliations des chercheurs</button>
+                <button class="tablinks" onclick="openTab(event, 'NC')">Evolution du nombre de conférences</button>
+                <button class="tablinks" onclick="openTab(event, 'EM')">Empreintes carbones des conférences</button>
+                
+            </div>
+            <div id="CONF_P" class="tabcontent">
+                <h3><a href="confloc.html" target="_blank">Carte des lieux des conférences</a></h3>
+            </div>
+            <div id="AUT_P" class="tabcontent">
+                <h3><a href="population_density_map3.html" target="_blank">Carte des affiliations des chercheurs</a></h3>
+            </div>
+            <div id="NC" class="tabcontent">
+                <center><img src="nb_conf_par_année.png" alt="Evolution du nombre de conférences au cours des années" width="750" height="450">
+                </center>
+            </div>
+            <div id="EM" class="tabcontent">
+                <center><img src="nv_empreinte_carbone_moyenne_par_conf_par_année.png" alt="Evolution de l'empreinte carbone moyenne d'une conférence" width="750" height="450">
+                </center>
+            </div>
+
+            
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>La réduction de l'empreinte carbone des conférences en informatique est essentielle pour atteindre nos objectifs de durabilité.</p>
+            <p>Nous comprenons tout à fait qu’il est difficile, à l’échelle individuelle, de modifier ses habitudes de transport et de moins aller en conférence. Cependant, la pollution engendrée par ces conférences ne parait clairement pas soutenable : elle correspond aux émissions de la Somalie pendant 4 ans ou encore aux émissions liées au secteur industriel des Pays-Bas pendant 2 ans.</p>
+            <p> Nous encourageons donc les organisateurs et les participants à adopter rapidement des pratiques plus respectueuses de l'environnement et à considérer l'impact de leurs choix sur notre planète et sur la santé de ses habitants.</p>
+        </section>
+
+        <footer id="contact">
+            <h2>Contact</h2>
+            <p>Pour plus d'informations ou si vous voulez discuter nos résultats, veuillez nous contacter à l'adresse suivante : <a href="mailto:vincent.houlne@telecom-paris.fr">vincent.houlne@telecom-paris.fr</a></p>
+        </footer>
+
+        <!-- Ajout de la section de recherche -->
+        <div id="search-section">
+            <h1><a href="index2.html">Recherchez vos conférences favorites</a></h1>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
