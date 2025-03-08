@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: rgb(230, 232, 231);
+    background-color: rgb(0, 0, 0);
+
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+form{
+margin-bottom: 100px;
+}
+
+
+input {
+  width: 100px;
+  height: 100px;
+  size: 40px;
+}
+
+
+iframe {
+    border: 1px solid black;
+    width: 100%; /* takes precedence over the width set with the HTML width attribute */
+  }
+
+.wheel-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+

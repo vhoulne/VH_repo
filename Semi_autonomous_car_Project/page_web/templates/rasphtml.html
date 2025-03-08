@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='raspCSS.css') }}">
+</head>
+<body>
+    <h1>CORBERRYPI</h1>
+    <p>le corbillard parfait pour votre défunte raspberry !</p>
+
+
+    <table>
+        <tr>
+          <td><strong><input type="button" onclick="ag()" value="↖"  id="STOP"/></strong></td>
+          <td><strong><input type="button" value="↑" onclick="a()"  id="STOP"/></strong></td>
+          <td><strong><input type="button" value="↗" onclick="ad()"id="STOP"/></strong></td>
+        </tr>
+        <tr>
+          <td><strong>&#128128;</strong></td>
+          <td><strong> 
+            <input type="button" value="STOP" onclick="getSTOP()" id="STOP"/></strong></td>
+          <td><strong><input type="button" value="↟" onclick="vitesse()"  id="STOP"/></strong></td>
+        </tr>
+        <tr>
+          <td><strong><input type="button" value="↙" onclick="bg()" id="STOP"/></strong></td>
+          <td><strong><input type="button" value="↓" onclick="b()" id="STOP"/></strong></td>
+          <td><strong><input type="button" value="↘" onclick="bd()" id="STOP"/></strong></td>
+        </tr>
+      </table>
+      
+    
+
+    <form>
+        <label>demi-tour:</label>
+        <input type="button" onclick="Demg()" value="demi-tour g"  id="STOP"/>
+        <input type="button" value="demi-tour d" onclick="Demd()"  id="STOP"/>
+    </form>
+
+    <form>
+        <label>mode automatique:</label>
+        <input type="button" onclick="Mode_automatique()" value="automatique"  id="STOP"/>
+    </form>
+
+
+ 
+
+    <script src="{{ url_for('static', filename='raspjava.js') }}"></script>
+</body>
+</html>
